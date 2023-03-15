@@ -414,6 +414,8 @@ input:where([type="text"], [type="email"]) {
 
 .numbered-items {
   counter-reset: count;
+  width: fit-content;
+  margin-inline: auto;
 }
 
 .numbered-items li {
@@ -422,16 +424,40 @@ input:where([type="text"], [type="email"]) {
 
 .numbered-items div {
   display: grid;
+  position: relative;
   align-items: center;
   column-gap: var(--size-400);
   grid-template-columns: min-content 1fr;
 }
 
-.numbered-items p {
+
+
+@media (max-width: 40em) {
+  .numbered-items__title::before {
+
+    --bg-title: var(--clr-accent-100);
+  
+    content: "";
+    position: absolute;
+    grid-column: 1 / -1;
+    z-index: -1;
+    border-radius: 100vw;
+    inset: 0;
+    box-shadow: 5em 0 0 var(--bg-title);
+    grid-row: 1 / 2;
+    background-color: var(--bg-title);
+  }
+}
+
+.numbered-items__title {
+  line-height: 1em;
+}
+
+.numbered-items__body {
   grid-column-end: -1;
 }
 @media (max-width: 30em){
-  .numbered-items p {
+  .numbered-items__body {
     grid-column-start: 1;
   }
 }
@@ -518,6 +544,10 @@ input:where([type="text"], [type="email"]) {
   padding-block: var(--size-700);
 }
 
+.margin-bottom-700 {
+  margin-block-end: var(--size-700);
+}
+
 .container{
   --max-width: 1110px ;
   --padding: 1rem;
@@ -529,6 +559,24 @@ input:where([type="text"], [type="email"]) {
 .even-columns{
   display: grid;
   gap: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-center p {
+  margin-inline: auto;
+}
+
+@media (max-width: 50em) {
+  .text-center-sm-only {
+    text-align: center;
+  }
+
+  .text-center-sm-only p {
+    margin-inline: auto;
+  }
 }
 
 @media (min-width: 50em){
